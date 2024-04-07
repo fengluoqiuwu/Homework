@@ -1,5 +1,7 @@
 package week7;
 
+
+
 public class Array2 implements MyArrayUtil{
     int[] array;
     Array2(){
@@ -19,9 +21,28 @@ public class Array2 implements MyArrayUtil{
             }
         }//Run Exception
 
-        int left=0;
-        int right=array.length-1;
+        return getMaxSum(array,0,array.length-1);
+    }
+    private static int getMaxSum(int[] array,int left,int right){
+        if(left==right){
+            return array[left];
+        }
 
-        return 0;
+        int Sum=array[left];
+        int maxSum = array[left];
+        int preSum = getMaxSum(array,left+1,right);
+
+        for(int i=left+1;i<=right;i++){
+            Sum=Sum+array[i];
+            if(Sum>maxSum){
+                maxSum=Sum;
+            }
+        }
+
+        if(preSum>maxSum) {
+            maxSum=preSum;
+        }
+
+        return maxSum;
     }
 }
